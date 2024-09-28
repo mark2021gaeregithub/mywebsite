@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      
+    <title>Local 3D Printing Services</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        section {
+            padding: 40px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        select, input[type="file"], input[type="number"], button {
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100%;
+        }
+        button {
+            background-color: #1a1a1a;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        footer {
+            text-align: center;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        /* 3D Printing Theme */
+        #filament-type, #color {
+            background-color: #f0f0f0;
+            border: none;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        section {
+            border-left: 5px solid #1a1a1a;
+        }
+        /* Media Queries */
+        @media (min-width: 768px) {
+            section {
+                max-width: 600px;
+                margin: 40px auto;
+            }
+            button {
+                max-width: 300px;
+                align-self: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>3D Printing Services</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#upload">Upload Files</a></li>
+                <li><a href="#filament">Choose Filament</a></li>
+                <li><a href="#order">Place Order</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   
+
+    <section id="home">
+        <h2>Welcome to Local 3D Printing</h2>
+        <p>Upload your files, choose your filament, and we'll handle the printing.</p>
+    </section>
+
+    <section id="upload">
+        <h2>Upload Your 3D Model</h2>
+        <p>Drag and drop your STL files below:</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".stl" required>
+            <button type="submit">Upload</button>
+            
+        </form>
+    </section>
+
+    <section id="filament">
+        <h2>Choose Your Filament</h2>
+        <form action="/choose-filament" method="post">
+            <label for="filament-type">Select Filament Type:</label>
+            <select id="filament-type" name="filament-type" required>
+                <option value="PLA">PLA</option>
+                <option value="TPU">TPU</option>
+                <option value="PETG">PETG</option>
+            </select>
+            <br><br>
+            <label for="color">Choose Color:</label>
+            <select id="color" name="color" required>
+                <option value="#FFFFFF">White</option>
+                <option value="#000000">Black</option>
+                <option value="#FF0000">Red</option>
+                <option value="#0000FF">Blue</option>
+                <option value="#00FF00">Green</option>
+                <option value="#FFFF00">Yellow</option>
+                <option value="#FFA500">Orange</option>
+                <option value="#808080">Gray</option>
+            </select>
+            <br><br>
+            <button type="submit">Confirm Filament</button>
+        </form>
+    </section>
+
+    <section id="order">
+        <h2>Place Your Order</h2>
+        <p>Once you upload your file and select your filament, you're ready to place your order!</p>
+        <form action="/place-order" method="post">
+            <label for="quantity">Number of Prints:</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+            <br><br>
+            <button type="submit">Place Order</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Local 3D Printing Services. All rights reserved.</p>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
